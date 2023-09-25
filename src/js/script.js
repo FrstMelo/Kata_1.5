@@ -4,6 +4,7 @@ const swiper = new Swiper('.swiper', {
   slidesPerView: 'auto',
   pagination: {
     el: '.swiper-pagination',
+    clickable: true,
   },
 });
 
@@ -30,27 +31,27 @@ window.addEventListener ('resize', function() {
 
 });
 
-const button = document.querySelectorAll('.main__more-btn, .main__hidden-btn, .brands__more-btn, .brands__hidden-btn');
-console.log(button)
-for (let i = 0; i < button.length; i++){
-  button[i].onclick = function(){
-    if (button[i] == document.querySelector('.main__more-btn')) {
-      button[i].classList.add('btn-hidden');
-      document.querySelector('.main__hidden-btn').classList.remove('btn-hidden');
-      document.querySelector('.main__descr').classList.add('main__descr--full');
-    }else if (button[i] == document.querySelector('.main__hidden-btn')){
-      button[i].classList.add('btn-hidden')
-      document.querySelector('.main__more-btn').classList.remove('btn-hidden');
-      document.querySelector('.main__descr').classList.remove('main__descr--full');
-    }else if (button[i] == document.querySelector('.brands__more-btn')){
-      button[i].classList.add('btn-hidden')
-      document.querySelector('.brands__hidden-btn').classList.remove('btn-hidden');
-      document.querySelector('.brands__content').classList.add('brands__content--full');
-    }else if (button[i] == document.querySelector('.brands__hidden-btn')){
-      button[i].classList.add('btn-hidden')
-      document.querySelector('.brands__more-btn').classList.remove('btn-hidden');
-      document.querySelector('.brands__content').classList.remove('brands__content--full');
+
+
+const btn = document.querySelector('.brands__more-btn');
+const content = document.querySelector('.brands__content'); 
+const descr = document.querySelector('.brands__more-txt'); 
+const mySvg = document.querySelector('.brands__more-svg');
+
+
+
+
+btn.addEventListener('click', function() {
+    if (!content.classList.contains('brands__content--full')) {
+        content.classList.add('brands__content--full'); 
+        mySvg.classList.add('active');
+        descr.textContent = 'Скрыть'; 
+    } else {
+        content.classList.remove('brands__content--full');
+        mySvg.classList.remove('active'); 
+        descr.textContent = 'Показать всё'; 
     }
-    console.log(button[i])
-  };
-}
+    
+});
+
+
